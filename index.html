@@ -8,15 +8,15 @@
     <script src="vendor/d3.v3.min.js"></script>
     <script src="vendor/lodash.underscore.min.js"></script>
 
-    <script type="text/javascript" src="colorbrewer.js"></script>
-    <script type="text/javascript" src="leaflet.points-layer.js"></script>
+    <script type="text/javascript" src="js/colorbrewer.js"></script>
+    <script type="text/javascript" src="js/leaflet.points-layer.js"></script>
 
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
-    <div id='map' data-source="earthquakeData1.json"></div>
+    <div id='map' data-source="data/earthquakeData2Days.json"></div>
     <div id='earthquake-plot'></div>
-    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
 
     <div id='content'>
       <h1>Nepal Earthquake 2015</h1>
@@ -32,6 +32,11 @@
     </div>
 
     <div id='earthquake-chord'></div>
-    <script type="text/javascript" src="chord.js"></script>
+    <script type="text/javascript" src="js/chord.js"></script>
+
+    <div id='earthquake-bar'>
+      <label><input type="checkbox"> Sort values</label>
+    </div>
+    <script type="text/javascript" src="js/bar.js"></script>
   </body>
 </html>
