@@ -1,13 +1,18 @@
 (function () {
-  // persons moving between Marin, Sonoma, Napa, SF, EB, SV and other regions
+  // Data based off off: http://www.worldpop.org.uk/nepal/Flowminder-Nepal-2015-08-27_%28V3%29.pdf
   var matrix = [
-    [ 5000, 1000, 2000, 4000, 3000, 3000, 5000 ],
-    [ 100, 2000, 80, 30, 10, 0, 0 ],
-    [ 0, 1, 5001, 29, 17, 0, 26 ],
-    [ 1000, 2000, 800, 300, 10, 0, 0 ],
-    [ 1000, 2000, 800, 300, 10, 0, 0 ],
-    [ 1000, 2000, 800, 300, 10, 0, 0 ],
-    [ 1000, 2000, 800, 300, 10, 0, 0 ]
+    [ 0, 12, 3, 1, 10, 5, 7, 2, 21, 0, 2, 3 ], // 63 out 130 in .75         /
+    [ 1, 0, 0, 0, 0, 1, 1, 0, 3, 0, 0, 0 ], // 2 out 16 in                  /
+    [ 8, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 ], // 13 4                         /
+    [ 8, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 ], //13 1                          /
+    [ 8, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0 ], // 14 13                        /
+    [ 4, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ], // 5.4 6                        /
+    [ 6, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ], //7,4 9                         /
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ], // -1, 2                        /
+    [ 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0 ], // 2 27                         /
+    [ 1, 0, 0, 0, 0, 1, 1, 0, 3, 0, 0, 0 ], // 2.8                          /
+    [ 4, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ], // 5.6 2.2                      /
+    [ 13, 2, 0, 0, 1, 0, 1, 0, 3, 0, 0, 0 ], // 25 4                        /
   ];
 
   var array = [ "Kathmandu", "Dhading", "Dolakha", "Gorkha", "Kavrepalanchok", "Makwanpur", "Nuwakot", "Okhaldhunga", "Ramechhap", "Rasuwa", "Sindhuli", "Sindupalchok" ];
@@ -87,22 +92,22 @@
   }
 
   function groupName(d) {
-    console.log(d)
-    var k = (d.endAngle - d.startAngle) / 2;
-    return [
-      {
-        angle: d.startAngle,
-        label: "0k"
-      },
-      {
-        angle: d.startAngle + (d.endAngle - d.startAngle) / 2,
-        label: array[d.index]
-      },
-      {
-        angle: d.endAngle,
-        label: Math.round(d.value/1000) + "k"
-      }
-    ]
+    // labels
+    var k = (d.endAngle - d.startAngle) / d.value;
+    var labels = d3.range(0, d.value, 1).map(function(v, i) {
+      return {
+        angle: v * k + d.startAngle,
+        label: i % 5 ? null : v / 1 + "k"
+      };
+    });
+
+    // Group Name
+    labels.push({
+      angle: d.startAngle + (d.endAngle - d.startAngle) / 2,
+      label: array[d.index]
+    })
+
+    return labels;
   }
 
   // Returns an event handler for fading a given chord group.
