@@ -4,15 +4,16 @@
         reverse = false;
         scheme = colorbrewer[scheme_id][classes],
         container = L.DomUtil.get('map'),
-        map = L.map(container).setView([28.3, 84], 7);
+        map = L.map(container).setView([28, 84], 7);
 
     L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
         attribution: '<a href="http://content.stamen.com">Stamen WaterColor</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         maxZoom: 17
-    }).setOpacity(0.2).addTo(map);
+    }).setOpacity(1).addTo(map);
 
     var imageUrl ='http://www.niwfnepal.org.np/images/projects(map).png'
     imageUrl = 'http://www.state.gov/gm/nepal_crc_dark_blue_80.png'
+    imageUrl = 'http://www.inseconline.org/earthquake/map/images/map2.png'
     var imageBounds = [[26.2, 79.9], [30.6, 88.4]];
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
@@ -89,8 +90,8 @@
 
     function timeseries_chart(color) {
         var margin = { top: 5, right: 5, bottom: 40, left: 45 },
-            width = 600 - margin.left - margin.right,
-            height = 200;
+            width = 850 - margin.left - margin.right,
+            height = 100;
 
         var x = d3.time.scale(),
             y = d3.scale.linear(),
@@ -176,7 +177,7 @@
                     .attr("text-anchor", "middle")
                     .style("font-size", "16px")
                     .style("text-decoration", "underline")
-                    .text("The first 2 days of Earthquakes");
+                    .text("Aftershocks");
             });
         }
 

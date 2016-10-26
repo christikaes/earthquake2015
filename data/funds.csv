@@ -1,11 +1,19 @@
 letter,frequency
-ADB, 3.0
-AU, 7.1
-CERF, 8.9
-CH, 4.3
-CN, 9.7
-EU, 3.3
-IN, 5.0
-TH, 2.9
-UK, 15.1
-US, 10.8
+AmeriCares, 0.75
+American Red Cross, 0.3
+Asian Development Bank, 3
+Australia, 3.9
+Canada, 4.1
+China, 3.2
+Christian Aid, 0.076
+European Commission, 3.3
+Germany, 2.7
+Japan, 8.4
+Norway, 3.9
+Save the Children, 0.454
+Singapore, 0.075
+Oxfam, 1
+USAID, 1
+United Kingdom, 7.6
+United Nations, 15
+United States, 10

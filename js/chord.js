@@ -21,8 +21,8 @@
       .sortSubgroups(d3.descending)
       .matrix(matrix);
 
-  var width = 500,
-      height = 500,
+  var width = 650,
+      height = 600,
       innerRadius = Math.min(width, height) * .30,
       outerRadius = innerRadius * 1.1;
 

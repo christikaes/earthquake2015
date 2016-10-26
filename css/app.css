@@ -5,39 +5,42 @@ html, body {
 }
 
 #map {
-  position: fixed;
+  /*position: fixed;*/
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 400px;
+  width: 900px;
   z-index: 1;
+  bottom: 40px;
 }
 
 #earthquake-plot {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
+  width: 900px;
   z-index: 2;
 }
 
 #earthquake-chord {
-  position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 2;
-  width: 500px;
-  height: 500px;
-  font-size: 18px;
+  width: 650px;
+  height: 650px;
+  font-size: 22px;
+  margin: 0 auto;
 }
 
 #earthquake-bar {
-  position: fixed;
   top: 30px;
   right: 30px;
   z-index: 2;
-  width: 500px;
-  height: 500px;
-  font-size: 18px;
+  width: 650px;
+  height: 650px;
+  font-size: 24px;
+  margin: 0 auto;
+}
+
+.no-border {
+  border: none;
 }
 
 /* Map */
@@ -91,4 +94,24 @@ label {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+/* Sections
+ * --------------------------------------- */
+#section0 img,
+#section1 img{
+  margin: 20px 0 0 0;
+}
+#section2 img{
+  margin: 20px 0 0 52px;
+}
+#section3 img{
+  bottom: 0px;
+  position: absolute;
+  margin-left: -420px;
+}
+.intro p{
+  width: 50%;
+  margin: 0 auto;
+  font-size: 1.5em;
 }

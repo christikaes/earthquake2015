@@ -1,7 +1,7 @@
 (function () {
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
-      width = 500 - margin.left - margin.right,
-      height = 300 - margin.top - margin.bottom;
+      width = 650 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
   var x = d3.scale.ordinal()
       .rangeRoundBands([0, width], .1, 1);
@@ -38,6 +38,10 @@
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
+        .selectAll("text")
+          .attr("dy", "2em")
+          .style("text-anchor", "end")
+          .attr("transform", "rotate(-90)")
       .append("text")
         .style("text-anchor", "end")
         .attr("x", width/2)
