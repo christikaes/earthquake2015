@@ -22,12 +22,24 @@
       }
 
       #map {
-        height: 365px;
-        width: 960px;
-        margin-bottom: 1em;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+      }
+
+      #earthquake-plot {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        z-index: 2;
       }
 
       .leaflet-popup-content ul { padding-left: 1.5em; }
+
+      .leaflet-container { background-color:rgba(255,0,0,0.0);}
 
       .circle { visibility: hidden; }
       .circle.selected { visibility: visible; }
@@ -44,7 +56,8 @@
     </style>
   </head>
   <body>
-    <div id='map' data-source="data.json"></div>
+    <div id='map' data-source="earthquakeData1.json"></div>
+    <div id='earthquake-plot'></div>
     <script type="text/javascript">
     (function () {
         var extent, scale,
@@ -52,12 +65,17 @@
             reverse = false;
             scheme = colorbrewer[scheme_id][classes],
             container = L.DomUtil.get('map'),
-            map = L.map(container).setView([-43.6, 172.3], 10);
+            map = L.map(container).setView([28.3, 84], 7);
 
-        L.tileLayer('http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-            attribution: '<a href="http://content.stamen.com/dotspotting_toner_cartography_available_for_download">Stamen Toner</a>, <a href="http://www.openstreetmap.org/">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
+            attribution: '<a href="http://content.stamen.com">Stamen WaterColor</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
             maxZoom: 17
-        }).addTo(map);
+        }).setOpacity(0.8).addTo(map);
+
+        var imageUrl ='http://www.niwfnepal.org.np/images/projects(map).png'
+        imageUrl = 'http://www.state.gov/gm/nepal_crc_dark_blue_80.png'
+        var imageBounds = [[26.2, 79.9], [30.6, 88.4]];
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         d3.json(container.dataset.source, function(collection) {
             L.pointsLayer(collection, {
@@ -70,15 +88,15 @@
                     .y(get_magnitude).yLabel("Magnitude")
                     .brushmove(on_brush);
 
-            d3.select("body").datum(collection.features).call(chart);
+            d3.select("#earthquake-plot").datum(collection.features).call(chart);
         });
 
         function get_time(d) {
-            return d3.time.format.iso.parse(d.properties.origintime);
+            return d3.time.format.iso.parse(d.properties.time);
         }
 
         function get_magnitude(d) {
-            return +d.properties.magnitude;
+            return +d.properties.mag;
         }
 
         function on_brush(brush) {
@@ -90,12 +108,12 @@
         }
 
         function get_radius(d) {
-            return d.properties.magnitude * d.properties.magnitude;
+            return d.properties.mag * d.properties.mag;
         }
 
         function circle_style(circles) {
             if (!(extent && scale)) {
-                extent = d3.extent(circles.data(), function (d) { return d.properties.depth; });
+                extent = d3.extent(circles.data(), function (d) { return d.properties.dmin; });
                 scale = d3.scale.log()
                         .domain(reverse ? extent.reverse() : extent)
                         .range(d3.range(classes));
@@ -104,7 +122,7 @@
                 .attr('stroke', scheme[classes - 1])
                 .attr('stroke-width', 1)
                 .attr('fill', function (d) {
-                    return scheme[(scale(d.properties.depth) * 10).toFixed()];
+                    return scheme[(scale(d.properties.dmin) * 10).toFixed()];
                 });
 
             circles.on('click', function (d, i) {
@@ -112,14 +130,14 @@
 
                 var t = '<h3><%- id %></h3>' +
                         '<ul>' +
-                        '<li>Magnitude: <%- mag %></li>' +
-                        '<li>Depth: <%- depth %>km</li>' +
+                        '<li>Magnitude: <%- mag %> mb</li>' +
+                        '<li>Depth: <%- depth %> km</li>' +
                         '</ul>';
 
                 var data = {
-                        id: d.id,
-                        mag: d.properties.magnitude,
-                        depth: d.properties.depth
+                        id: d.properties.title,
+                        mag: d.properties.mag,
+                        depth: d.properties.dmin
                     };
 
                 L.popup()
@@ -132,8 +150,8 @@
 
         function timeseries_chart(color) {
             var margin = { top: 5, right: 5, bottom: 40, left: 45 },
-                width = 960 - margin.left - margin.right,
-                height = 80;
+                width = 600 - margin.left - margin.right,
+                height = 200;
 
             var x = d3.time.scale(),
                 y = d3.scale.linear(),
@@ -208,10 +226,18 @@
                         .style("stroke-width", .5)
                         .style("fill", color[color.length - 1])
                         .attr("opacity", .4)
-                        .attr("r", 2)
+                        .attr("r", 4)
                         .attr("transform", function (d) {
                             return "translate(" + x(get_x(d)) + "," + y(get_y(d)) + ")";
                         });
+
+                    series.append("text")
+                        .attr("x", (width / 2))
+                        .attr("y", 10)
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "16px")
+                        .style("text-decoration", "underline")
+                        .text("The first 2 days of Earthquakes");
                 });
             }
 
