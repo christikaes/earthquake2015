@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="vendor/leaflet.css" />
+
+    <script src="vendor/leaflet-src.js"></script>
+    <script src="vendor/d3.v3.min.js"></script>
+    <script src="vendor/lodash.underscore.min.js"></script>
+
+    <script type="text/javascript" src="js/colorbrewer.js"></script>
+    <script type="text/javascript" src="js/leaflet.points-layer.js"></script>
+
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <div id='map' data-source="data/earthquakeData2Days.json"></div>
+    <div id='earthquake-plot'></div>
+    <script type="text/javascript" src="js/map.js"></script>
+
+    <div id='content'>
+      <h1>Nepal Earthquake 2015</h1>
+      <h2> 8,600 killed </h2>
+      <h2> 16,000 injured </h2>
+      <h2> 2.8 million displaced </h2>
+      <h2> 5.6 million affected </h2>
+      <h2> 20 monuments destrpyed </h2>
+      <h2> 26 hospitals destrpyed </h2>
+      <h2> 1300 schools destrpyed </h2>
+      <h2> 473,000 homes destrpyed </h2>
+
+    </div>
+
+    <div id='earthquake-chord'></div>
+    <script type="text/javascript" src="js/chord.js"></script>
+
+    <div id='earthquake-bar'>
+      <label><input type="checkbox"> Sort values</label>
+    </div>
+    <script type="text/javascript" src="js/bar.js"></script>
+  </body>
+</html>

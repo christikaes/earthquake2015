@@ -1,42 +1,257 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="vendor/leaflet.css" />
+<!doctype html>
+<html lang="en">
 
-    <script src="vendor/leaflet-src.js"></script>
-    <script src="vendor/d3.v3.min.js"></script>
-    <script src="vendor/lodash.underscore.min.js"></script>
+	<head>
+		<meta charset="utf-8">
 
-    <script type="text/javascript" src="js/colorbrewer.js"></script>
-    <script type="text/javascript" src="js/leaflet.points-layer.js"></script>
+		<title>Nepal Earthquake 2015</title>
 
-    <link rel="stylesheet" href="css/app.css" />
-  </head>
-  <body>
-    <div id='map' data-source="data/earthquakeData2Days.json"></div>
-    <div id='earthquake-plot'></div>
-    <script type="text/javascript" src="js/map.js"></script>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <div id='content'>
-      <h1>Nepal Earthquake 2015</h1>
-      <h2> 8,600 killed </h2>
-      <h2> 16,000 injured </h2>
-      <h2> 2.8 million displaced </h2>
-      <h2> 5.6 million affected </h2>
-      <h2> 20 monuments destrpyed </h2>
-      <h2> 26 hospitals destrpyed </h2>
-      <h2> 1300 schools destrpyed </h2>
-      <h2> 473,000 homes destrpyed </h2>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    </div>
+		<link rel="stylesheet" href="vendor/reveal.css">
+		<link rel="stylesheet" href="vendor/serif.css" id="theme">
+		<link rel="stylesheet" href="vendor/leaflet.css" />
+		<link rel="stylesheet" href="css/leafletreveal.css">
+		<link rel="stylesheet" href="css/app.css" />
 
-    <div id='earthquake-chord'></div>
-    <script type="text/javascript" src="js/chord.js"></script>
+		<script src="vendor/leaflet-src.js"></script>
+		<script src="vendor/d3.v3.min.js"></script>
+		<script src="vendor/lodash.underscore.min.js"></script>
+		<script type="text/javascript" src="js/colorbrewer.js"></script>
+		<script type="text/javascript" src="js/leaflet.points-layer.js"></script>
+	</head>
 
-    <div id='earthquake-bar'>
-      <label><input type="checkbox"> Sort values</label>
-    </div>
-    <script type="text/javascript" src="js/bar.js"></script>
-  </body>
+	<body>
+
+		<div class="reveal">
+
+			<!-- Intro -->
+			<div class="slides">
+				<section>
+					<h2>25 April 2015</h2>
+					<h3>Gorkha Earthquake</h3>
+					<br />
+					<p>
+						An interactive visualization of the devastating earthquake that shook Nepal
+						<br /><br />
+						<small>By: Christina Kayastha</small>
+					</p>
+				</section>
+
+				<!-- Map -->
+				<section>
+					<section>
+						<h2>1 Earthquake</h2>
+						<h3>100 Aftershocks</h3>
+					</section>
+					<section>
+						<p>
+							The Gorkha Earthquake was one of the strongest earthquakes that has ever shaken Nepal.
+							Not only was the earthquake a massive <h3>7.9 on the richter scale</h3> but there were
+							hundreds of aftershocks following the initial quake over and over for the next few weeks.
+						</p>
+					</section>
+					<section>
+						<p>
+							In this visualization you can explore the earthquakes and aftershoks that happened
+							during the first 2 days.
+							</br>
+							<small>
+								<ul>
+									<li>
+										Drag and select a time range on the plot to see the earthquakes on the map
+									</li>
+									<li>
+										Click on any earthquake circle and see details
+									</li>
+									<li>
+										Pan and Zoom around the Map
+									</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+					<section>
+						<h3>Aftershock Visualization</h3>
+						<div id='map' data-source="data/earthquakeData2Days.json"></div>
+				    <div id='earthquake-plot'></div>
+					</section>
+				</section>
+
+				<!-- Bar -->
+				<section>
+					<section>
+						<h2>1 Earthquake</h2>
+						<h3>$4 Billion Relief Aid</h3>
+					</section>
+					<section>
+						<h3>The Earthquake Destroyed</h3>
+						<table>
+							<tr>
+								<td>	20 </td>
+								<td> 25 </td>
+								<td> 1,300 </td>
+								<td>	500,000	</td> </tr>
+								<tr>
+									<td> <img src="img/monument.png" /> </td>
+									<td> <img src="img/hospital.png" /> </td>
+									<td> <img src="img/school.png" /> </td>
+									<td> <img src="img/home.png" /> </td>
+								</tr>
+								<tr>
+									<td> Monuments </td>
+									<td> Hospitals </td>
+									<td> Schools </td>
+									<td> Homes </td>
+								</tr>
+							</table>
+						</section>
+						<section>
+							<p>
+								When disaster struck, many governments and organizations rose up to the cause.
+								<br />
+								<br />
+								In this visualization you can compare the donations that came in from different sources.
+							</br>
+							<small>
+								<ul>
+									<li>
+										Sort the donations alphabetically/quantitatively.
+									</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+					<section>
+						<h3>Relief Aid</h3>
+						<div id='earthquake-bar'>
+							<label><input type="checkbox"> Sort values</label>
+						</div>
+						<script type="text/javascript" src="js/bar.js"></script>
+					</section>
+				</section>
+
+				<!-- Chord -->
+				<section>
+					<section>
+						<h2>1 Earthquake</h2>
+						<h3>8 Million Affected</h3>
+					</section>
+					<section>
+						<h3>The Earthquake Affected</h3>
+						<table>
+							<tr>
+								<td> 9000 </td>
+								<td> 16000 </td>
+								<td> 2.8 Million </td>
+								<td>	5.6 Million	</td> </tr>
+							<tr>
+								<td> <img src="img/killed.png" /> </td>
+								<td> <img src="img/injured.png" /> </td>
+								<td> <img src="img/homeless.png" /> </td>
+								<td> <img src="img/affected.png" /> </td>
+							</tr>
+							<tr>
+								<td> Killed </td>
+								<td> Injured </td>
+								<td> Homeless </td>
+								<td> Affected </td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<p>
+							Nepal was not ready for the Earthquake, and even with the foreign aid many homes were destroyed, many people were displaced.
+							<br />
+							<br />
+							In this visualization you can explore the different cities that people migrated to and from after the earthquake.
+							</br>
+							<small>
+								<ul>
+									<li>
+										Hover over any group to see how many people flowed into the city, and out of it.
+									</li>
+									<li>
+										Notice the labels and tick marks that show how many people were displaced in each city.
+									</li>
+								</ul>
+							</small>
+						</p>
+					</section>
+					<section>
+						<h3>Population Relocation</h3>
+						<div id='earthquake-chord'></div>
+				    <script type="text/javascript" src="js/chord.js"></script>
+					</section>
+				</section>
+
+
+				<section>
+					<h2>1 Earthquake</h2>
+					<h3>100 Aftershocks</h3>
+					<h3>8 Million Affected</h3>
+					<h3>$4 Billion Relief Aid</h3>
+				</section>
+				<section>
+					<p>
+						Nepal has been rebuilding from the ashes for the last year, but there is still a lot to do.
+						I hope that these visualizations give you a better understanding of the scale and impact of the earthquake.
+					</p>
+					<h2>Let's continue to rebuild!</h2>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="vendor/head.min.js"></script>
+		<script src="vendor/reveal.js"></script>
+
+		<script type="text/javascript" src="js/map.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'vendor/zoom.js', async: true }
+				]
+			});
+
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+			    if (event.indexh == 1){ // assuming your 1st slide is the one with the map
+			        map.invalidateSize(false); // assuming that map holds the the reference to your leaflet instance
+			    }
+			} );
+
+			L.Map.addInitHook(function() {
+			    var slides = document.querySelector('.slides'),
+			        zoom = Number(slides.style.zoom);
+
+			    // Reveal.js sometimes use the zoom CSS property, but sometimes a scale
+			    // transform instead. We handle both.
+			    if (zoom) {
+			        this._container.style.zoom = 1/zoom;
+			    } else {
+			        zoom = Number(slides.style.transform.replace(/.*scale\(([0-9\.]+)\).*/, '$1'));
+			        this._container.style.transform = 'scale(' + (1 / zoom) + ')';
+			    }
+
+			    this.invalidateSize(false);
+			});
+
+		</script>
+
+	</body>
 </html>
